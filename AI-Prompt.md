@@ -23,6 +23,37 @@ Created the following files:
   - src/middleware/validation.ts
   - src/index.ts
 
+## Architecture Refactoring
+
+### Prompt
+```
+which structure pattern you using?
+```
+
+### Response
+Implemented N-Tier Architecture with the following structure:
+```
+src/
+├── controllers/           # Request handlers
+├── services/             # Business logic
+├── middleware/           # Cross-cutting concerns
+├── routes/              # Route definitions
+├── types/               # Type definitions
+├── utils/               # Utility functions
+├── validation/          # Validation schemas
+├── dto/                 # Data Transfer Objects
+└── index.ts            # Application entry point
+```
+
+Created new files:
+- src/controllers/email.controller.ts
+- src/services/email.service.ts
+- src/routes/email.routes.ts
+- src/utils/dns.utils.ts
+- src/validation/email.validation.ts
+- src/dto/email.dto.ts
+- Updated existing files to match new architecture
+
 ## Docker Setup
 
 ### Prompt
@@ -59,17 +90,6 @@ Fixed Docker configuration:
 
 ### Prompt
 ```
-add test command and update the readme document
-```
-
-### Response
-Updated:
-- Added test service to docker-compose.yml
-- Updated README.md with Docker instructions
-- Added testing documentation
-
-### Prompt
-```
 curl command
 ```
 
@@ -83,13 +103,23 @@ Added curl command examples to README.md:
 ```
 email-validator/
 ├── src/
+│   ├── controllers/
+│   │   └── email.controller.ts
 │   ├── services/
-│   │   └── emailValidator.ts
+│   │   └── email.service.ts
 │   ├── middleware/
-│   │   ├── errorHandler.ts
-│   │   └── validation.ts
+│   │   ├── error.middleware.ts
+│   │   └── validation.middleware.ts
+│   ├── routes/
+│   │   └── email.routes.ts
 │   ├── types/
 │   │   └── index.ts
+│   ├── utils/
+│   │   └── dns.utils.ts
+│   ├── validation/
+│   │   └── email.validation.ts
+│   ├── dto/
+│   │   └── email.dto.ts
 │   └── index.ts
 ├── package.json
 ├── tsconfig.json
@@ -112,6 +142,7 @@ email-validator/
 7. Hot-reload support
 8. API documentation
 9. Curl command examples
+10. N-Tier Architecture implementation
 
 ## Development Commands
 ```bash

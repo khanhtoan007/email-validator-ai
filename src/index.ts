@@ -1,9 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { EmailValidator } from './services/emailValidator';
-import { validateEmail } from './middleware/validation';
-import { errorHandler } from './middleware/errorHandler';
+import emailRoutes from './routes/email.routes';
+import { errorHandler } from './middleware/error.middleware';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,15 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.post('/api/validate-email', validateEmail, async (req, res, next) => {
-  try {
-    const { email } = req.body;
-    const result = await EmailValidator.validateEmail(email);
-    res.json(result);
-  } catch (error) {
-    next(error);
-  }
-});
+app.use('/api', emailRoutes);
 
 // Error handling
 app.use(errorHandler);

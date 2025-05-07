@@ -14,6 +14,72 @@ A robust email validation API built with Express.js and TypeScript that validate
 - Docker
 - Docker Compose
 
+## Architecture
+
+The project follows N-Tier Architecture with the following structure:
+
+```
+src/
+├── controllers/           # Request handlers
+│   └── email.controller.ts
+├── services/             # Business logic
+│   └── email.service.ts
+├── middleware/           # Cross-cutting concerns
+│   ├── error.middleware.ts
+│   └── validation.middleware.ts
+├── routes/              # Route definitions
+│   └── email.routes.ts
+├── types/               # Type definitions
+│   └── index.ts
+├── utils/               # Utility functions
+│   └── dns.utils.ts
+├── validation/          # Validation schemas
+│   └── email.validation.ts
+├── dto/                 # Data Transfer Objects
+│   └── email.dto.ts
+└── index.ts            # Application entry point
+```
+
+### Layer Responsibilities
+
+1. **Controllers Layer**
+   - Handles HTTP requests and responses
+   - Input validation
+   - Response formatting
+   - Error handling
+
+2. **Services Layer**
+   - Contains business logic
+   - Email validation rules
+   - Domain validation
+   - Data processing
+
+3. **Middleware Layer**
+   - Error handling
+   - Request validation
+   - Security middleware
+   - Cross-cutting concerns
+
+4. **Routes Layer**
+   - Route definitions
+   - Route grouping
+   - Middleware application
+
+5. **DTOs Layer**
+   - Data transfer objects
+   - Request/Response interfaces
+   - Type definitions
+
+6. **Utils Layer**
+   - Utility functions
+   - DNS validation
+   - Helper methods
+
+7. **Validation Layer**
+   - Input validation schemas
+   - Validation rules
+   - Custom validators
+
 ## Features
 
 - Email format validation using regex
@@ -25,6 +91,7 @@ A robust email validation API built with Express.js and TypeScript that validate
 - RESTful API design
 - Docker support for development and production
 - Hot-reload in development
+- N-Tier Architecture
 
 ## Installation
 
@@ -132,7 +199,6 @@ The API includes centralized error handling that returns appropriate HTTP status
 
 ### Docker Development
 - `docker compose up`: Start development environment with hot-reload
-- `docker compose run test`: Run tests in Docker
 - `docker compose down`: Stop development environment
 
 ## Security
